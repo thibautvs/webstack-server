@@ -1,4 +1,4 @@
 Web Stack – Server
 ==================
 
-The ultimate web technology stack – server part.
+A rock-solid web technology stack, server part.
