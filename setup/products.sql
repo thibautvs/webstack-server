@@ -7,8 +7,8 @@ CREATE TABLE "Products"
   id serial NOT NULL,
   name text NOT NULL,
   price money NOT NULL,
-  "createdAt" date,
-  "updatedAt" date,
+  "createdAt" timestamp with time zone,
+  "updatedAt" timestamp with time zone,
   CONSTRAINT "primary" PRIMARY KEY (id)
 )
 WITH (

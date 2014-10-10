@@ -2,6 +2,7 @@
 
 var fs = require('fs');
 var path = require('path');
+var HttpStatus = require('http-status');
 
 module.exports = function (server, models) {
   fs
@@ -10,6 +11,6 @@ module.exports = function (server, models) {
       return (file.indexOf('.') !== 0) && (file !== 'index.js');
     })
     .forEach(function (file) {
-      require(path.join(__dirname, file))(server, models);
+      require(path.join(__dirname, file))(server, models, HttpStatus);
     });
 };
