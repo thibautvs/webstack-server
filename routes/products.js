@@ -42,22 +42,14 @@ module.exports = function (server, models, HttpStatus) {
 
   server.put('/products/:id', function (req, res, next) {
     Product
-      .find({ where: { id: req.params.id } })
+      .update({
+        name: req.body.name,
+        price: req.body.price
+      }, {
+        where: { id: req.params.id }
+      })
       .success(function (data) {
-        if (data === null) {
-          res.send(HttpStatus.NOT_FOUND);
-        } else {
-          data.updateAttributes({
-            name: req.body.name,
-            price: req.body.price
-          })
-          .success(function (data) {
-            res.send(HttpStatus.NO_CONTENT);
-          })
-          .error(function (err) {
-            res.send(HttpStatus.INTERNAL_SERVER_ERROR);
-          });
-        }
+        res.send(data === null ? HttpStatus.NOT_FOUND : HttpStatus.NO_CONTENT);
       })
       .error(function (err) {
         res.send(HttpStatus.INTERNAL_SERVER_ERROR);
