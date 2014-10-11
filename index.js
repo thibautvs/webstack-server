@@ -11,7 +11,7 @@ server
 
 routes(server, models);
 
-models.sequelize.sync().success(function () {
+models.sequelize.sync().then(function () {
   server.listen(3000, function () {
     console.log('%s listening at %s', server.name, server.url);
   });

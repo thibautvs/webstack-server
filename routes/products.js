@@ -6,10 +6,10 @@ module.exports = function (server, models, HttpStatus) {
   server.get('/products', function (req, res, next) {
     Product
       .all()
-      .success(function (data) {
+      .then(function (data) {
         res.send(data);
       })
-      .error(function (err) {
+      .catch(function (err) {
         res.send(HttpStatus.INTERNAL_SERVER_ERROR);
       });
   });
@@ -17,10 +17,10 @@ module.exports = function (server, models, HttpStatus) {
   server.get('/products/:id', function (req, res, next) {
     Product
       .find({ where: { id: req.params.id } })
-      .success(function (data) {
+      .then(function (data) {
         res.send(data === null ? HttpStatus.NOT_FOUND : data);
       })
-      .error(function (err) {
+      .catch(function (err) {
         res.send(HttpStatus.INTERNAL_SERVER_ERROR);
       });
   });
@@ -32,10 +32,10 @@ module.exports = function (server, models, HttpStatus) {
         price: req.body.price
       })
       .save()
-      .success(function (data) {
+      .then(function (data) {
         res.send(HttpStatus.CREATED, data);
       })
-      .error(function (err) {
+      .catch(function (err) {
         res.send(HttpStatus.INTERNAL_SERVER_ERROR);
       });
   });
@@ -48,10 +48,10 @@ module.exports = function (server, models, HttpStatus) {
       }, {
         where: { id: req.params.id }
       })
-      .success(function (data) {
+      .then(function (data) {
         res.send(data === null ? HttpStatus.NOT_FOUND : HttpStatus.NO_CONTENT);
       })
-      .error(function (err) {
+      .catch(function (err) {
         res.send(HttpStatus.INTERNAL_SERVER_ERROR);
       });
   });
@@ -59,10 +59,10 @@ module.exports = function (server, models, HttpStatus) {
   server.del('/products/:id', function (req, res, next) {
     Product
       .destroy({ where: { id: req.params.id } })
-      .success(function (data) {
+      .then(function (data) {
         res.send(data === null ? HttpStatus.NOT_FOUND : HttpStatus.NO_CONTENT);
       })
-      .error(function (err) {
+      .catch(function (err) {
         res.send(HttpStatus.INTERNAL_SERVER_ERROR);
       });
   });
