@@ -10,7 +10,7 @@ module.exports = function (server, models, HttpStatus) {
         res.send(data);
       })
       .catch(function (err) {
-        res.send(HttpStatus.INTERNAL_SERVER_ERROR);
+        next(err);
       });
   });
 
@@ -21,7 +21,7 @@ module.exports = function (server, models, HttpStatus) {
         res.send(data === null ? HttpStatus.NOT_FOUND : data);
       })
       .catch(function (err) {
-        res.send(HttpStatus.INTERNAL_SERVER_ERROR);
+        next(err);
       });
   });
 
@@ -36,7 +36,7 @@ module.exports = function (server, models, HttpStatus) {
         res.send(HttpStatus.CREATED, data);
       })
       .catch(function (err) {
-        res.send(HttpStatus.INTERNAL_SERVER_ERROR);
+        next(err);
       });
   });
 
@@ -52,7 +52,7 @@ module.exports = function (server, models, HttpStatus) {
         res.send(data === null ? HttpStatus.NOT_FOUND : HttpStatus.NO_CONTENT);
       })
       .catch(function (err) {
-        res.send(HttpStatus.INTERNAL_SERVER_ERROR);
+        next(err);
       });
   });
 
@@ -63,7 +63,7 @@ module.exports = function (server, models, HttpStatus) {
         res.send(data === null ? HttpStatus.NOT_FOUND : HttpStatus.NO_CONTENT);
       })
       .catch(function (err) {
-        res.send(HttpStatus.INTERNAL_SERVER_ERROR);
+        next(err);
       });
   });
 };
