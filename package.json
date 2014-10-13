@@ -1,0 +1,19 @@
+{
+  "name": "webstack-server",
+  "version": "0.0.1",
+  "description": "A business-ready web technology stack",
+  "main": "index.js",
+  "dependencies": {
+    "http-status": "~0.1.8",
+    "pg": "~3.5.0",
+    "restify": "~2.8.3",
+    "sequelize": "~2.0.0-rc1"
+  },
+  "devDependencies": {},
+  "scripts": {},
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/Urge2code/webstack-server.git"
+  },
+  "homepage": "https://github.com/Urge2code/webstack-server"
+}
