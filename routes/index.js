@@ -1,16 +1,12 @@
 'use strict';
 
-var fs = require('fs');
-var path = require('path');
-var HttpStatus = require('http-status');
+const fs = require('fs');
+const path = require('path');
+const HttpStatus = require('http-status');
 
-module.exports = function (server, models) {
+exports.initialize = (app, models) => {
   fs
     .readdirSync(__dirname)
-    .filter(function (file) {
-      return (file.indexOf('.') !== 0) && (file !== 'index.js');
-    })
-    .forEach(function (file) {
-      require(path.join(__dirname, file))(server, models, HttpStatus);
-    });
+    .filter(file => file.indexOf('.') !== 0 && file !== 'index.js')
+    .forEach(file => require(path.join(__dirname, file))(app, models, HttpStatus));
 };

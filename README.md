@@ -21,7 +21,7 @@ The server part of WebStack is composed of the technologies listed below. For th
 please refer to the [Design Decisions](#design-decisions) section.
 
 * Node.js
-* Restify
+* Express.js
 * PostgreSQL
 * Sequelize
 
@@ -36,9 +36,9 @@ First, type ``npm install`` to install all the dependencies. Then, install Postg
 
 * **API technology** : [Node.js][node] has been selected because the sweet spots of this technology are real-time and ReST API. As we are implementing the latter, Node immediately stood out as the ideal candidate. It is also a requirement to use a technology that is not compiled for iteration speed reasons. The startup world moves very fast and a technology that enables the business to stay ahead of competition, react quickly to market changes and implement customer feedback in a fast way can really make or break a business. As stated in an interview from Facebook, *"many consider that PHP was a bad choice, but at the time it was a very good one as the non-compiled nature of it allowed to iterate quickly and develop in a fast way"*. The contenders that were considered were [Python][python], [Go][golang] and [Ruby on Rails][rails] but didn't require lots of investigation as, at the time of writing, pretty much every big web company, such as Ebay, LinkedIn, Groupon, etc, was switching from their current language (Ruby, Java, ...) to Node and got substantial benefits from a performance and productivity points of view, as [this article][nodebenefits] relates. It also makes a lot of sense to use a technology on the backend where the knowledge and tools from the frontend can be leveraged, namely the same language, JavaScript, and testing frameworks such as Mocha/Chai/Sinon.
 
-* **API framework** : it was initially considered to use [Express][express], the go-to web framework for Node. However, after talking with TJ Fontaine (Node project lead), I learned about [Restify][restify] which is basically a simpler version of Express to focus on writing ReST APIs (without the bulk of view rendering etc) and with convenient built-in features such as [DTrace][dtrace] support.
+* **API framework** : [Express][express] is the most popular web framework for Node.js, feature-rich and stable. As such, it's also the Node.js web framework having the most available resources: tutorials, books, StackOverflow posts and trained developers.
 
-* **Database** : the initial candidate that was strongly considered was [MongoDB][mongodb] to have a full stack JS implementation, which brings interesting benefits, including same language across the stack and no impedance mismatch. However, after reading cautionary articles on the web relating very bad experiences using it (see [this article][badmongoarticle] and this [slide deck][badmongodeck]) and having similar feedback from a Node user group citing *"MongoDB use cases to be very narrow"*, it was decided to go for a relational database instead. Production data is the most critical aspect and utmost importance has to be placed to ensure it's consistent at all times and that data is never lost. MongoDB (or any other NoSql store for that matter) isn't a good fit here for many reasons: not ACID, no transactions, high chances of inconsistent state, ... It is instead often recommended for storing arbitrary pieces of JSON. So the 2 contenders considered were [MySQL][mysql] and [PostgreSQL][postgre]. PostgreSQL has been selected because of its superior maturity, stability and features (see this [stackoverflow post][postgrespost] and [Quora article][postgresarticle]). It also now supports JSON data types which makes it the best of both worlds.
+* **Database** : the initial candidate that was strongly considered was [MongoDB][mongodb] to have a full stack JS implementation, which brings interesting benefits, including same language across the stack and no impedance mismatch. However, after reading cautionary articles on the web relating very bad experiences using it (see [this article][badmongoarticle] and this [slide deck][badmongodeck]) and having similar feedback from a Node user group citing *"MongoDB use cases to be very narrow"*, it was decided to go for a relational database instead. Production data is the most critical aspect and utmost importance has to be placed to ensure it's consistent at all times and that data is never lost. MongoDB (or any other NoSql store for that matter) isn't a good fit here for many reasons: not ACID, no transactions across collections, possibilities of inconsistent state, ... It is instead often recommended for storing arbitrary pieces of JSON. So the 2 contenders considered were [MySQL][mysql] and [PostgreSQL][postgre]. PostgreSQL has been selected because of its superior maturity, stability and features (see this [stackoverflow post][postgrespost] and [Quora article][postgresarticle]). It also now supports JSON data types which makes it the best of both worlds.
 
 * **ORM** : the main contenders are [Sequelize][sequelize], [node-orm2][nodeorm] and [Bookshelf.js][bookshelfjs]. Sequelize has been chosen because widely considered as the best alternative, from articles (such as [this one][sequelizearticle] citing Sequelize to be *"almost ready for prime time"*) and GitHub repo stars.
 
@@ -49,7 +49,6 @@ First, type ``npm install`` to install all the dependencies. Then, install Postg
 [rails]: http://rubyonrails.org/
 [nodebenefits]: http://www.nearform.com/nodecrunch/node-js-becoming-go-technology-enterprise/
 [express]: http://expressjs.com/
-[restify]: http://mcavage.me/node-restify/
 [mongodb]: http://www.mongodb.org/
 [mysql]: http://www.mysql.com/
 [postgre]: http://www.postgresql.org/
